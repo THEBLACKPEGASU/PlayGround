@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#101619">
+<title>Concrete Dreams — Skate Session</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap');
+:root{--ink:#f6f1e7;--muted:#a9aaa2;--orange:#ff7448;--lime:#d8ff75;--panel:rgba(13,20,22,.75)}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#171e20;color:var(--ink);font-family:'Barlow Condensed',sans-serif}canvas{display:block;position:fixed;inset:0;outline:0}.noise{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.11;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.34'/%3E%3C/svg%3E")}.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(ellipse at 50% 45%,transparent 35%,rgba(7,11,13,.44) 100%)}.ui{position:fixed;inset:0;z-index:3;pointer-events:none;padding:26px 34px;display:flex;flex-direction:column;justify-content:space-between}.top{display:flex;justify-content:space-between;align-items:flex-start}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:36px;height:36px;background:var(--orange);color:#152022;display:grid;place-items:center;clip-path:polygon(0 0,100% 0,100% 75%,75% 100%,0 100%);font-size:21px;font-weight:900}.brand-name{font-weight:900;font-size:19px;letter-spacing:.04em;line-height:1}.brand-sub{font-family:'DM Mono',monospace;font-size:9px;color:#b8bbb2;letter-spacing:.15em;margin-top:5px}.session{display:flex;align-items:center;gap:28px}.stat{min-width:80px;text-align:right}.eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.17em;text-transform:uppercase;color:#b8b8ae}.score{font-weight:900;font-size:31px;line-height:1.04;letter-spacing:.01em}.timer{font-size:30px;font-weight:800;line-height:1;color:var(--lime)}.timer.danger{color:#ff644e;animation:pulse .6s infinite alternate}@keyframes pulse{to{opacity:.55}}.divider{height:32px;width:1px;background:#ffffff35}.combo-wrap{position:absolute;top:24%;right:34px;text-align:right;opacity:0;transform:translateY(8px);transition:.2s}.combo-wrap.on{opacity:1;transform:none}.combo{font-size:24px;font-weight:900;color:var(--lime);font-style:italic;text-shadow:0 2px 20px #000}.combo-detail{font-family:'DM Mono',monospace;font-size:10px;color:#fff;letter-spacing:.12em}.side-label{position:absolute;left:34px;top:50%;writing-mode:vertical-rl;transform:rotate(180deg);font-family:'DM Mono',monospace;font-size:9px;color:#ffffff9a;letter-spacing:.2em}.bottom{display:flex;align-items:flex-end;justify-content:space-between}.run-info{display:flex;align-items:flex-end;gap:20px}.speed-block{display:flex;align-items:baseline;gap:6px}.speed{font-weight:900;font-size:51px;line-height:.8;letter-spacing:-.03em}.unit{font-family:'DM Mono',monospace;font-size:10px;color:#cac9be}.challenge{border-left:1px solid #fff5;padding-left:14px}.challenge-title{font-size:14px;font-weight:800;letter-spacing:.08em}.challenge-desc{font-family:'DM Mono',monospace;color:#c0c1b6;font-size:9px;letter-spacing:.08em;margin-top:3px}.meterbox{position:absolute;bottom:27px;left:50%;transform:translateX(-50%);width:min(230px,30vw);text-align:center}.meter-label{display:flex;justify-content:space-between;font:9px 'DM Mono',monospace;letter-spacing:.12em;color:#d4d1c3;margin-bottom:6px}.meter{height:3px;background:#fff5}.meter-fill{height:100%;width:0;background:var(--orange);box-shadow:0 0 10px var(--orange);transition:width .12s}.controls-hint{position:absolute;right:34px;bottom:31px;font:9px 'DM Mono',monospace;line-height:1.75;color:#c5c6ba;text-align:right;letter-spacing:.03em}.controls-hint b{color:#fff;font-weight:500}.overlay{position:fixed;inset:0;z-index:5;display:grid;place-items:center;background:rgba(9,14,16,.48);backdrop-filter:blur(7px);transition:opacity .35s,visibility .35s}.overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}.card{width:min(510px,calc(100vw - 36px));padding:36px 40px 32px;background:rgba(17,25,26,.92);border:1px solid #ffffff25;box-shadow:0 24px 80px #0008;position:relative;overflow:hidden}.card:before{content:'';position:absolute;top:0;left:0;width:72px;height:4px;background:var(--orange)}.kicker{font:10px 'DM Mono',monospace;letter-spacing:.22em;color:var(--lime);text-transform:uppercase}.card h1{font-size:clamp(50px,8vw,76px);line-height:.82;letter-spacing:-.035em;text-transform:uppercase;margin:16px 0 17px;font-weight:900}.card h1 span{color:var(--orange)}.card-copy{font-size:16px;color:#d0d0c6;line-height:1.4;max-width:390px}.key-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px;padding:20px 0 22px}.keyrow{display:flex;align-items:center;gap:9px;font:10px 'DM Mono',monospace;color:#d5d4cb}.key{min-width:30px;padding:5px 7px;text-align:center;border:1px solid #ffffff36;color:white;background:#ffffff0b;font-size:10px}.start-btn{pointer-events:auto;border:0;background:var(--lime);color:#17201e;padding:14px 20px;width:100%;font:900 16px 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:.15s}.start-btn:hover{background:#eaffad;transform:translateY(-1px)}.card-foot{font:9px 'DM Mono',monospace;color:#858b83;text-align:center;margin-top:14px;letter-spacing:.06em}.result-score{font-size:48px;color:var(--lime);font-weight:900;margin:12px 0 0}.result-label{font:10px 'DM Mono',monospace;color:#bec0b6;letter-spacing:.18em}.toast{position:fixed;z-index:4;top:38%;left:50%;transform:translate(-50%,-10px);font-size:26px;font-weight:900;font-style:italic;text-shadow:0 3px 20px #000;opacity:0;transition:.18s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}.touch-controls{display:none;pointer-events:auto;position:absolute;bottom:24px;left:16px;right:16px;justify-content:space-between;align-items:flex-end}.pad{display:grid;grid-template-columns:repeat(3,43px);grid-template-rows:repeat(2,41px);gap:4px}.touch-btn{border:1px solid #ffffff44;background:#0d171995;color:white;border-radius:4px;font:13px 'DM Mono',monospace;touch-action:none;user-select:none;display:grid;place-items:center}.touch-btn:active,.touch-btn.active{background:#d8ff75;color:#18201c}.actions{display:flex;gap:7px;align-items:flex-end}.actions .touch-btn{width:47px;height:47px;border-radius:50%;font:800 12px 'Barlow Condensed',sans-serif}.actions .ollie{width:57px;height:57px;border-color:var(--orange);color:var(--orange)}@media(max-width:700px){.ui{padding:17px 17px}.brand-name{font-size:15px}.brand-mark{width:30px;height:30px}.session{gap:12px}.stat{min-width:58px}.score,.timer{font-size:24px}.eyebrow{font-size:8px}.side-label{display:none}.bottom{align-items:flex-start}.run-info{gap:10px}.speed{font-size:39px}.challenge{padding-left:9px}.challenge-title{font-size:12px}.challenge-desc{font-size:8px}.controls-hint{display:none}.meterbox{bottom:22px;width:32vw}.touch-controls{display:flex}.ui{padding-bottom:105px}.card{padding:29px 25px}.card h1{font-size:58px}.key-grid{gap:8px 10px}.combo-wrap{right:18px;top:19%;}.overlay .card-foot{font-size:8px}}@media(max-height:520px){.card{padding:20px 28px}.card h1{font-size:49px;margin:9px 0}.key-grid{padding:12px 0}.card-copy{font-size:13px}.ui{padding-top:12px;padding-bottom:15px}.meterbox{bottom:14px}}
+</style>
+</head>
+<body>
+<div class="noise"></div><div class="vignette"></div>
+<div class="ui">
+ <div class="top">
+  <div class="brand"><div class="brand-mark">↗</div><div><div class="brand-name">CONCRETE DREAMS</div><div class="brand-sub">CITY PARK · SESSION 01</div></div></div>
+  <div class="session"><div class="stat"><div class="eyebrow">SESSION SCORE</div><div class="score" id="score">000000</div></div><div class="divider"></div><div class="stat"><div class="eyebrow">TIME LEFT</div><div class="timer" id="timer">2:00</div></div></div>
+ </div>
+ <div class="side-label">KEEP IT ROLLING — LAND CLEAN</div>
+ <div class="combo-wrap" id="comboWrap"><div class="combo" id="combo">NICE!</div><div class="combo-detail" id="comboDetail">+0 · 1× MULTIPLIER</div></div>
+ <div class="bottom">
+  <div class="run-info"><div class="speed-block"><div class="speed" id="speed">00</div><div class="unit">KM/H</div></div><div class="challenge"><div class="challenge-title">FLOW STATE</div><div class="challenge-desc" id="status">PUSH TO BUILD SPEED</div></div></div>
+  <div class="controls-hint"><b>W A S D</b> STEER &nbsp; <b>SPACE</b> OLLIE<br><b>Z / X / C</b> TRICKS &nbsp; <b>SHIFT</b> POWERSLIDE</div>
+ </div>
+ <div class="meterbox"><div class="meter-label"><span>AIR / POP</span><span id="airValue">READY</span></div><div class="meter"><div class="meter-fill" id="airMeter"></div></div></div>
+ <div class="touch-controls" id="touchControls"><div class="pad"><div></div><button class="touch-btn" data-key="w">▲</button><div></div><button class="touch-btn" data-key="a">◀</button><button class="touch-btn" data-key="s">▼</button><button class="touch-btn" data-key="d">▶</button></div><div class="actions"><button class="touch-btn" data-key="z">FLIP</button><button class="touch-btn" data-key="x">GRAB</button><button class="touch-btn" data-key="c">SPIN</button><button class="touch-btn ollie" data-key=" ">POP</button></div></div>
+</div>
+<div class="toast" id="toast">OLLIE!</div>
+<div class="overlay" id="overlay"><div class="card" id="card">
+ <div class="kicker">A TWO-MINUTE STREET SESSION</div><h1>Own the<br><span>concrete.</span></h1>
+ <div class="card-copy">String tricks together, grind the rails, and stick the landing. The clock is ticking — make every run count.</div>
+ <div class="key-grid"><div class="keyrow"><span class="key">WASD</span> PUSH + STEER</div><div class="keyrow"><span class="key">SPACE</span> OLLIE</div><div class="keyrow"><span class="key">Z / X / C</span> FLIP · GRAB · SPIN</div><div class="keyrow"><span class="key">SHIFT</span> POWERSLIDE</div></div>
+ <button class="start-btn" id="startBtn">DROP IN &nbsp; ↗</button><div class="card-foot">LAND CLEAN TO BANK YOUR COMBO · DON'T EAT IT</div>
+ </div></div>
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
+
+// Concrete Dreams — a compact, arcade-style skate session.
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x9ca8a3);
+scene.fog = new THREE.Fog(0x9ca8a3, 42, 155);
+const camera = new THREE.PerspectiveCamera(54, innerWidth/innerHeight, .1, 260);
+const renderer = new THREE.WebGLRenderer({antialias:true, powerPreference:'high-performance'});
+renderer.setSize(innerWidth,innerHeight); renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+renderer.outputColorSpace=THREE.SRGBColorSpace; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.15;
+document.body.prepend(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xdce9eb,0x443c32,2.1));
+const sun=new THREE.DirectionalLight(0xffd5a4,3.0); sun.position.set(-25,38,-18); sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); sun.shadow.camera.left=-55; sun.shadow.camera.right=55; sun.shadow.camera.top=55; sun.shadow.camera.bottom=-55; sun.shadow.bias=-.0002; scene.add(sun);
+const fill=new THREE.DirectionalLight(0x91bcd0,1.0); fill.position.set(20,14,24); scene.add(fill);
+const mats={ concrete:new THREE.MeshStandardMaterial({color:0x858985,roughness:.92}), pale:new THREE.MeshStandardMaterial({color:0xb9b7a9,roughness:.88}), dark:new THREE.MeshStandardMaterial({color:0x303a39,roughness:.8}), metal:new THREE.MeshStandardMaterial({color:0xb8c1bd,metalness:.78,roughness:.27}), orange:new THREE.MeshStandardMaterial({color:0xf06e48,roughness:.72}), lime:new THREE.MeshStandardMaterial({color:0xc9e878,roughness:.8}), wood:new THREE.MeshStandardMaterial({color:0x9b6946,roughness:.87}), blue:new THREE.MeshStandardMaterial({color:0x3f727b,roughness:.85}), grass:new THREE.MeshStandardMaterial({color:0x52654d,roughness:1}), black:new THREE.MeshStandardMaterial({color:0x202426,roughness:.6})};
+const box=(x,y,z,sx,sy,sz,mat, parent=scene)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(sx,sy,sz),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m};
+const cyl=(x,y,z,r1,r2,h,mat,parent=scene,segments=12)=>{const m=new THREE.Mesh(new THREE.CylinderGeometry(r1,r2,h,segments),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m};
+const ground=box(0,-.32,22,150,.6,190,mats.concrete); ground.receiveShadow=true;
+// Warm, worn park markings and pavement seams.
+const lineMat=new THREE.MeshStandardMaterial({color:0xc2b7a0,roughness:1});
+for(let i=-5;i<=5;i++){box(i*8,.002,20,.035,.01,170,lineMat);}
+for(let z=-55;z<105;z+=12) box(0,.003,z,140,.01,.025,lineMat);
+// Long shallow quarter-pipe ramps: a solid sculpted wedge with a smooth-looking ride face.
+function ramp(x,z,w,len,h,rotation=0){
+ const g=new THREE.BufferGeometry(); const v=[-w/2,0,-len/2, w/2,0,-len/2, -w/2,0,len/2, w/2,0,len/2, -w/2,h,len/2, w/2,h,len/2];
+ g.setAttribute('position',new THREE.Float32BufferAttribute(v,3)); g.setIndex([0,2,1,1,2,3,2,4,3,3,4,5,0,1,4,1,5,4,0,4,2,1,3,5]); g.computeVertexNormals();
+ const mesh=new THREE.Mesh(g,new THREE.MeshStandardMaterial({color:0x9c9b8e,roughness:.8,side:THREE.DoubleSide}));mesh.position.set(x,0,z);mesh.rotation.y=rotation;mesh.castShadow=true;mesh.receiveShadow=true;scene.add(mesh);
+ const lip=cyl(0,0,0,.11,.11,1,mats.metal);lip.rotation.z=Math.PI/2;lip.scale.set(1,1,w); // replace with horizontal coping bar
+ lip.position.set(x,h,z+Math.cos(rotation)*len/2); lip.rotation.set(0,rotation,Math.PI/2);lip.scale.set(1,1,w); return {x,z,w,len,h,rotation,mesh};
+}
+const ramps=[];
+ramps.push(ramp(0,19,9,13,2.2)); ramps.push(ramp(-22,7,9,12,1.7,Math.PI/2)); ramps.push(ramp(22,39,10,14,2.5,-Math.PI/2));
+ramps.push(ramp(-4,65,11,15,2.3)); ramps.push(ramp(27,-22,10,12,2,Math.PI));
+// Box ledges, curbs, rails and banks.
+function rail(x,z,len,y=.85,rot=0){
+ const group=new THREE.Group(); group.position.set(x,y,z);group.rotation.y=rot;scene.add(group);
+ cyl(0,0,0,.07,.07,len,mats.metal,group,10).rotation.x=Math.PI/2;
+ for(const zz of [-len*.43,len*.43]){cyl(0,-.42,zz,.055,.055,.84,mats.metal,group,8);box(0,-.82,zz,.48,.08,.32,mats.dark,group)}
+ return {x,z,len,y,rot,group};
+}
+const rails=[rail(-7,8,7,.95),rail(8,27,9,.9,.08),rail(-17,42,8,1.15),rail(14,59,10,.88),rail(3,-11,8,.95)];
+function ledge(x,z,w,len,h=.72){box(x,h/2,z,w,h,len,mats.pale);box(x,h+.025,z,w+.06,.06,len+.08,mats.orange);for(let zz=z-len/2+1;zz<z+len/2;zz+=2)box(x,h+.06,zz,.08,.018,.1,mats.dark)}
+ledge(11,10,2,7,.68);ledge(-10,32,2.1,8,.8);ledge(5,48,2,6,.64);ledge(-28,58,2,9,.74);
+// Central mini-bowl rim, nested rounded-looking concrete banks.
+const bowlRim=cyl(-31,.1,17,13,13,.3,mats.pale,scene,48); bowlRim.scale.set(1,.18,.72);
+const bowlIn=cyl(-31,-.42,17,11.8,11.8,.22,mats.blue,scene,48); bowlIn.scale.set(1,.12,.72);
+// Low park features: picnic bench, block obstacles, planters and painted bollards.
+for(let i=0;i<3;i++){box(30,.48,5+i*2,3.4,.95,.18,mats.wood);box(30,.9,5+i*2,3.6,.12,.26,mats.wood);for(const x of [28.8,31.2])box(x,.23,5+i*2,.15,.46,.17,mats.black)}
+for(const [x,z] of [[-30,-2],[32,29],[-30,78],[34,74]]){box(x,.3,z,5,.6,3,mats.dark);box(x,.62,z,4.7,.08,2.7,mats.grass);for(let i=0;i<5;i++){cyl(x-1.6+i*.8,.92,z,.27,.15,.6,mats.grass);}}
+for(const [x,z] of [[-15,-16],[19,-5],[-25,27],[25,52],[-14,75],[18,82]]){cyl(x,.4,z,.18,.23,.8,mats.orange);cyl(x,.83,z,.22,.2,.08,mats.pale);}
+// Urban perimeter: fence, lit poles, and low city blocks fading into the haze.
+for(let x=-55;x<=55;x+=5){cyl(x,1.5,-48,.045,.045,3,mats.dark);if(x<55)box(x+2.5,1.25,-48,5,.045,.045,mats.metal)}
+for(let i=0;i<13;i++){const x=-65+i*11, h=10+(i*7%16), z=-72-(i%3)*8;const b=box(x,h/2,z,8,h,9,new THREE.MeshStandardMaterial({color:[0x657270,0x7d8179,0x526267][i%3],roughness:1}));for(let yy=2;yy<h-1;yy+=3)for(let xx=-2.5;xx<=2.5;xx+=2)box(x+xx,yy,z+4.52,.65,1.1,.04,new THREE.MeshStandardMaterial({color:0xb4a58c,emissive:0x382c1e,emissiveIntensity:.3}))}
+// A few subtle palm-like park trees.
+function tree(x,z){cyl(x,2,z,.2,.32,4,mats.wood);for(let i=0;i<5;i++){let a=i*1.25;const fr=cyl(x+Math.cos(a)*1.1,4.1,z+Math.sin(a)*1.1,.08,.35,2.4,mats.grass);fr.rotation.z=Math.cos(a)*.5;fr.rotation.x=Math.sin(a)*.5}}
+for(const [x,z] of [[-39,-8],[39,13],[-39,49],[39,66]])tree(x,z);
+// Skater rig: stylized hoodie, helmet, articulated arms and legs, and a real rolling deck.
+const skater=new THREE.Group();scene.add(skater);
+const rider=new THREE.Group();skater.add(rider);
+const skin=new THREE.MeshStandardMaterial({color:0xb97855,roughness:.8}), hoodie=new THREE.MeshStandardMaterial({color:0xe75f43,roughness:.86}), pants=new THREE.MeshStandardMaterial({color:0x293d45,roughness:.9}), shoes=new THREE.MeshStandardMaterial({color:0xe9e5d7,roughness:.8});
+const board=new THREE.Group();skater.add(board);
+box(0,.16,0, .85,.13,2.05,new THREE.MeshStandardMaterial({color:0xd9a66e,roughness:.66}),board);
+box(0,.235,0,.7,.025,1.6,new THREE.MeshStandardMaterial({color:0x222c2d,roughness:.9}),board);
+for(const z of [-.65,.65]){box(0,.05,z,.6,.11,.16,mats.metal,board);for(const x of [-.31,.31]){const wheel=cyl(x,-.06,z,.13,.13,.11,new THREE.MeshStandardMaterial({color:0xe5ddd0,roughness:.55}),board,12);wheel.rotation.z=Math.PI/2;}}
+function limb(parent,a,b,r,mat){const d=new THREE.Vector3().subVectors(b,a), length=d.length();const m=new THREE.Mesh(new THREE.CylinderGeometry(r*.78,r,length,8),mat);m.position.copy(a).add(b).multiplyScalar(.5);m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());m.castShadow=true;parent.add(m);return m}
+// Rider parts are built in local coordinates; pivots enable in-air pose changes.
+cyl(0,1.56,0,.34,.3,.78,hoodie,rider,12);
+const head=cyl(0,2.18,.03,.24,.25,.44,skin,rider,12);
+const helmet=new THREE.Mesh(new THREE.SphereGeometry(.27,12,8),mats.lime);helmet.position.set(0,2.38,.03);helmet.scale.set(1,.55,1);helmet.castShadow=true;rider.add(helmet);
+box(0,1.04,-.03,.62,.48,.34,pants,rider);
+for(const x of [-.2,.2]){limb(rider,new THREE.Vector3(x,1.02,0),new THREE.Vector3(x, .55, x*.28),.13,pants);limb(rider,new THREE.Vector3(x,.55,x*.28),new THREE.Vector3(x,.32,.28),.12,pants);box(x,.26,.34,.3,.14,.42,shoes,rider)}
+for(const x of [-.39,.39]){limb(rider,new THREE.Vector3(x,1.82,0),new THREE.Vector3(x*1.5,1.5,.1),.105,hoodie);limb(rider,new THREE.Vector3(x*1.5,1.5,.1),new THREE.Vector3(x*1.55,1.25,.25),.085,skin)}
+// Directional sun glow and a softly visible sky disc.
+const sunBall=new THREE.Mesh(new THREE.SphereGeometry(3,24,16),new THREE.MeshBasicMaterial({color:0xffd99d}));sunBall.position.set(-62,45,-105);scene.add(sunBall);
+
+const $=id=>document.getElementById(id), keys=new Set();
+const ui={score:$('score'),timer:$('timer'),speed:$('speed'),status:$('status'),combo:$('combo'),comboDetail:$('comboDetail'),comboWrap:$('comboWrap'),airMeter:$('airMeter'),airValue:$('airValue'),toast:$('toast'),overlay:$('overlay'),card:$('card')};
+let running=false, finished=false, score=0, timeLeft=120, speed=0, yaw=0, vy=0, grounded=true, airtime=0, spin=0, trickBank=0, comboCount=0, comboAge=0, comboPoints=0, grindTime=0, wipeLock=0, toastAge=0, ollieLock=0, nearRamp=false, currentRamp=null, landingFlash=0;
+const pos=skater.position, clock=new THREE.Clock();
+const trickNames={z:['KICKFLIP',500],x:['INDY GRAB',650],c:['360 SHUVIT',700],q:['HEELFLIP',600],e:['MELON GRAB',750]};
+function showToast(text){ui.toast.textContent=text;ui.toast.classList.add('show');toastAge=.95}
+function startSession(){score=0;timeLeft=120;speed=0;yaw=0;pos.set(0,0,-13);vy=0;grounded=true;airtime=0;spin=0;trickBank=0;comboCount=0;comboAge=0;comboPoints=0;grindTime=0;wipeLock=0;finished=false;running=true;rider.rotation.set(0,0,0);skater.rotation.y=0;ui.overlay.classList.add('hidden');showToast('LET’S ROLL');}
+function endSession(){running=false;finished=true;ui.card.innerHTML=`<div class="kicker">SESSION COMPLETE · CITY PARK</div><h1>Run it<br><span>back.</span></h1><div class="card-copy">The streets are yours. Every clean landing adds to your line.</div><div class="result-score">${score.toLocaleString()}</div><div class="result-label">TOTAL SESSION SCORE</div><div style="height:22px"></div><button class="start-btn" id="startBtn">SKATE AGAIN &nbsp; ↗</button><div class="card-foot">BEST LINES ARE BUILT ONE TRICK AT A TIME</div>`;ui.overlay.classList.remove('hidden');$('startBtn').addEventListener('click',startSession);}
+$('startBtn').addEventListener('click',startSession);
+const preventKeys=new Set([' ','ArrowUp','ArrowDown','ArrowLeft','ArrowRight']);
+addEventListener('keydown',e=>{if(preventKeys.has(e.key))e.preventDefault();const k=e.key.toLowerCase();if(!keys.has(k)){keys.add(k);if(running)onPress(k)}if(k==='escape'&&running){running=false;ui.card.innerHTML='<div class="kicker">SESSION PAUSED</div><h1>Catch<br><span>your breath.</span></h1><div class="card-copy">Your line is waiting.</div><div style="height:22px"></div><button class="start-btn" id="startBtn">KEEP SKATING &nbsp; ↗</button><div class="card-foot">SESSION CLOCK PAUSED</div>';ui.overlay.classList.remove('hidden');$('startBtn').addEventListener('click',()=>{running=true;ui.overlay.classList.add('hidden')})}});
+addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));
+addEventListener('blur',()=>keys.clear());
+function onPress(k){
+ if(k===' '||k==='arrowup'){if(grounded&&ollieLock<=0){vy=5.8+Math.min(speed*.1,1.8);grounded=false;airtime=0;trickBank=0;spin=0;ollieLock=.28;showToast('OLLIE!')}}
+ else if(!grounded&&trickNames[k]){const [name,base]=trickNames[k];trickBank+=base;comboCount++;rider.rotation.x=(k==='x'||k==='e')?.36:rider.rotation.x;skater.rotation.y+=k==='c'?Math.PI*2:(Math.random()-.5)*.8;showToast(name);}
+}
+function updateGame(dt){
+ if(!running)return;
+ timeLeft=Math.max(0,timeLeft-dt);if(timeLeft===0){endSession();return}
+ ollieLock=Math.max(0,ollieLock-dt);wipeLock=Math.max(0,wipeLock-dt);comboAge+=dt;landingFlash=Math.max(0,landingFlash-dt);
+ const forward=keys.has('w')||keys.has('arrowup'), reverse=keys.has('s')||keys.has('arrowdown'), left=keys.has('a')||keys.has('arrowleft'), right=keys.has('d')||keys.has('arrowright'), slide=keys.has('shift');
+ if(forward)speed+=7.8*dt;else if(reverse)speed-=10*dt;else speed-=.72*dt;
+ speed=THREE.MathUtils.clamp(speed,0,17);
+ if(left)yaw+=dt*(1.55+speed*.04);if(right)yaw-=dt*(1.55+speed*.04);
+ if(slide){speed=Math.max(0,speed-5*dt);yaw+=((left?1:0)-(right?1:0))*dt*1.1;}
+ const dx=Math.sin(yaw)*speed*dt, dz=Math.cos(yaw)*speed*dt;
+ pos.x+=dx;pos.z+=dz;
+ // Cross a sloped bank face and launch from its coping.
+ nearRamp=false;currentRamp=null;
+ for(const r of ramps){const ca=Math.cos(r.rotation),sa=Math.sin(r.rotation),rx=pos.x-r.x,rz=pos.z-r.z;const lx=rx*ca-rz*sa,lz=rx*sa+rz*ca;
+  if(Math.abs(lx)<r.w*.5&&lz>=-.3&&lz<=r.len*.5+.2&&Math.abs(pos.y)<2.7){nearRamp=true;currentRamp=r;const face=THREE.MathUtils.clamp(lz/(r.len*.5),0,1)*r.h;pos.y=Math.max(pos.y,face);
+   if(lz>=r.len*.5-.3&&grounded&&speed>3){vy=3.1+Math.min(speed*.22,3.8);grounded=false;airtime=0;trickBank=0;spin=0;showToast('RAMP POP!');}
+  }
+ }
+ // Gravity and clean touchdown scoring.
+ if(!grounded){vy-=12*dt;pos.y+=vy*dt;airtime+=dt;spin+=dt*(keys.has('c')?5:0);if(pos.y<=0&&vy<0){pos.y=0;vy=0;grounded=true;landingFlash=.4;rider.rotation.x=0;
+   if(wipeLock<=0){let airBonus=Math.round(airtime*160);let raw=trickBank+airBonus+(comboCount>1?comboCount*140:0);if(raw>0){const multiplier=Math.min(1+Math.max(comboCount-1,0)*.5,4);const earned=Math.round(raw*multiplier);score+=earned;comboPoints+=earned;comboAge=0;ui.combo.textContent=comboCount>1?'SICK LINE!':'CLEAN LANDING';ui.comboDetail.textContent=`+${earned.toLocaleString()} · ${multiplier.toFixed(1)}× MULTIPLIER`;ui.comboWrap.classList.add('on');showToast('+'+earned.toLocaleString());}else if(airtime>.18)showToast('STUCK IT!');
+   }else{speed*=.48;comboCount=0;comboPoints=0;trickBank=0;showToast('WIPEOUT');}
+   airtime=0;trickBank=0;comboCount=0;wipeLock=.22;
+  }}
+ // Ride along a rail when close enough; the grind itself scores continuously.
+ let onRail=false;
+ for(const r of rails){const da=pos.x-r.x,dz0=pos.z-r.z;const along=da*Math.sin(r.rot)+dz0*Math.cos(r.rot),side=da*Math.cos(r.rot)-dz0*Math.sin(r.rot);
+  if(Math.abs(along)<r.len/2&&Math.abs(side)<.68&&pos.y<1.6&&speed>1.5){onRail=true;grounded=true;vy=0;pos.y=.98;grindTime+=dt;const gain=Math.floor(dt*260* Math.max(1,speed/7));score+=gain;comboPoints+=gain;comboAge=0;ui.combo.textContent='50–50 GRIND';ui.comboDetail.textContent=`+${Math.floor(grindTime*260).toLocaleString()} · KEEP BALANCE`;ui.comboWrap.classList.add('on');ui.status.textContent='LOCKED ON · GRIND!';break;}}
+ if(!onRail)grindTime=0;
+ // Keep the action inside the skate plaza.
+ pos.x=THREE.MathUtils.clamp(pos.x,-46,46);pos.z=THREE.MathUtils.clamp(pos.z,-40,91);
+ if(comboAge>2.1&&!onRail){ui.comboWrap.classList.remove('on');comboPoints=0}
+ const rolling=grounded?0:Math.sin(performance.now()*.012)*.045;
+ skater.position.y=pos.y+rolling;skater.rotation.y=yaw;
+ board.position.y=.08+(grounded?0:Math.sin(airtime*9)*.13);board.rotation.z=grounded?(slide?Math.sin(performance.now()*.008)*.18:0):Math.sin(airtime*17)*.21;
+ rider.position.y=grounded?0:Math.sin(airtime*12)*.045; rider.rotation.z=grounded?(left?.06:right?-.06:0):Math.sin(airtime*8)*.1;
+ if(!grounded&&trickBank>0)rider.rotation.x=Math.sin(performance.now()*.02)*.16;
+ if(grounded&&onRail)rider.rotation.z=Math.sin(performance.now()*.02)*.07;
+ // The chase camera eases in behind the current line.
+ const camTarget=new THREE.Vector3(pos.x-Math.sin(yaw)*9,5.3+pos.y,pos.z-Math.cos(yaw)*9);
+ camera.position.lerp(camTarget,1-Math.pow(.001,dt));camera.lookAt(pos.x,1.05+pos.y,pos.z+2.4);
+ const km=Math.round(speed*3.1);ui.speed.textContent=String(km).padStart(2,'0');
+ ui.status.textContent=onRail?'LOCKED ON · GRIND!':!grounded?(trickBank?'TRICK IN PROGRESS':'AIRBORNE · THROW A TRICK'):forward?'BUILDING SPEED':speed>1?'ROLLING CLEAN':'PUSH TO BUILD SPEED';
+ ui.airMeter.style.width=`${Math.min(100,grounded?0:(airtime*48+trickBank/48))}%`;ui.airValue.textContent=grounded?'READY':`${(airtime).toFixed(1)}s AIR`;
+ ui.score.textContent=String(score).padStart(6,'0');const sec=Math.ceil(timeLeft);ui.timer.textContent=`${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`;ui.timer.classList.toggle('danger',timeLeft<20);
+}
+
+// Pointer-based controls are also useful on touchscreens; prevent browser scrolling/zoom gestures.
+for(const btn of document.querySelectorAll('.touch-btn')){
+ const key=btn.dataset.key;
+ const down=e=>{e.preventDefault();btn.classList.add('active');if(!keys.has(key)){keys.add(key);if(running)onPress(key)}};
+ const up=e=>{e.preventDefault();btn.classList.remove('active');keys.delete(key)};
+ btn.addEventListener('pointerdown',down);btn.addEventListener('pointerup',up);btn.addEventListener('pointercancel',up);btn.addEventListener('lostpointercapture',up);
+}
+let last=0;
+function animate(now){requestAnimationFrame(animate);const dt=Math.min(.04,(now-last)/1000||0);last=now;if(toastAge>0){toastAge-=dt;if(toastAge<=0)ui.toast.classList.remove('show')}
+ updateGame(dt);renderer.render(scene,camera);}
+requestAnimationFrame(animate);
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.8))});
+camera.position.set(0,8,-27);camera.lookAt(0,1,1);
+</script>
+</body></html>
+
+</body></html>
